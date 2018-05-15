@@ -1,7 +1,35 @@
 These are a couple of scripts that I have running on my Snips RaspberryPI 3
 
+## Using Home Assistant TTS with Snips
+
+- Configure TTS in Home Assistant [https://www.home-assistant.io/components/tts/]
+- Copy customtts.sh to /usr/local/bin and make it executable
+```
+cd /usr/local/bin
+sudo wget https://raw.githubusercontent.com/tschmidty69/homeassistant-config/master/snips/customtts.sh
+sudo chmod +x customtts.sh
+```
+- Edit customtts.sh and set the API_KEY if needed and the URL for your HA instance.
+```
+sudo vim customtts.sh
+```
+- Add provider to snips.toml
+  Edit provider and lang in the second line to match your provider
+```
+echo "provider = \"customtts\"" >> /etc/snips.toml
+echo "customtts = { command = [\"/usr/bin/customtts.sh\", \"<PLATFORM>\", \"%%OUTPUT_FILE%%\", \"<LANG>\", \"%%TEXT%%\"] }" >> /etc/snips.toml
+```
+- restart snips
+```
+sudo systemctl restart 'snips-*'
+```
+
+## Miscellaneous scripts ##
+
 
 ### jarvis_says ###
+
+This is an older script I used that interacts with AWS directly
 
 Copy this script somewhere it can be executed by snips
 ```
