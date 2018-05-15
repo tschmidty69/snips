@@ -14,7 +14,7 @@ sudo chmod +x customtts.sh
 sudo vim customtts.sh
 ```
 - Add provider to snips.toml
-  Edit provider and lang in the second line to match your provider
+  Edit <PLATFORM> and <LANG> in the second line to match your provider
 ```
 echo "provider = \"customtts\"" >> /etc/snips.toml
 echo "customtts = { command = [\"/usr/bin/customtts.sh\", \"<PLATFORM>\", \"%%OUTPUT_FILE%%\", \"<LANG>\", \"%%TEXT%%\"] }" >> /etc/snips.toml
